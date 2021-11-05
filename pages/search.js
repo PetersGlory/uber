@@ -80,7 +80,7 @@ const StarIcon = tw.img`
 bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `
 const ConfirmButton = tw.button`
-bg-black text-white h-28
+bg-black text-white h-18
 `
 const ConfirmContainer = tw.div`
 px-4 flex flex-col rounded-2 mt-2
