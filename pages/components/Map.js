@@ -37,7 +37,6 @@ const Map = (props) => {
       })
     }
   }, [props.pickup,props.dropOff]);
-
   
     return (
         <Wrapper id="maps">

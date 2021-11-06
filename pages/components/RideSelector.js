@@ -49,4 +49,5 @@ font-medium
 const Time = tw.div`
 text-blue-500 text-xs
 `
+
 export default RideSelector

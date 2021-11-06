@@ -14,7 +14,6 @@ export default function Home() {
   )
 }
 
-
 const Wrapper = tw.div`
   flex flex-col h-screen
 `
