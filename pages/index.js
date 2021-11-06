@@ -1,4 +1,4 @@
-import Head from 'next/head'
+// import Head from 'next/head'
 import tw from "tailwind-styled-components"
 import Map from './components/Map'
 import ActionItems from './components/ActionItems'

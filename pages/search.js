@@ -93,4 +93,4 @@ bg-black text-white h-18 rounded-full p-2 mt-1
 const ConfirmContainer = tw.div`
 px-4 flex flex-col rounded-2 mt-2
 `
-export default Search
+export default Search;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
-import { carList } from '../data/CarList'
+import { carList } from '../data/carList'
 const RideSelector = () => {
 
     return (
