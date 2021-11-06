@@ -9,7 +9,7 @@ const Search = () => {
         <Wrapper>
             {/* Buttons */}
             <ButtonContainer>
-                <Link href="/">
+                <Link href="/" passHref={true}>
                     <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
                 </Link>
             </ButtonContainer>
@@ -39,7 +39,7 @@ const Search = () => {
                         pickup: pick,
                         dropoff: drop
                     }
-                }}>
+                }} passHref={true}>
                     <ConfirmButton>Confirm Location</ConfirmButton>
                 </Link>
             </ConfirmContainer>
