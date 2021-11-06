@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import tw from "tailwind-styled-components"
 import Link from "next/link"
 
 const Search = () => {
+    const [pick, setPick] = useState("");
+    const [drop, setDrop] = useState("");
     return (
         <Wrapper>
             {/* Buttons */}
@@ -19,8 +21,8 @@ const Search = () => {
                     <Square src="https://img.icons8.com/windows/50/000000/square-full.png"  />
                 </FromToIcons>
                 <InputBoxes>
-                    <Input placeholder="Enter pickup Location" />
-                    <Input placeholder="Where to?" />
+                    <Input placeholder="Enter pickup Location" onChange={(e)=>{setPick(e.target.value)}} value={pick} />
+                    <Input placeholder="Where to?" onChange={(e)=>{setDrop(e.target.value)}} value={drop} />
                 </InputBoxes>
                 <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png" />
             </InputContainer>
@@ -31,7 +33,13 @@ const Search = () => {
             </SavedPlaces>
             {/* location */}
             <ConfirmContainer>
-                <Link href="/">
+                <Link href={{
+                    pathname:"/confirm",
+                    query:{
+                        pickup: pick,
+                        dropoff: drop
+                    }
+                }}>
                     <ConfirmButton>Confirm Location</ConfirmButton>
                 </Link>
             </ConfirmContainer>
@@ -40,7 +48,7 @@ const Search = () => {
 }
 
 const Wrapper = tw.div`
-bg-gray-200 h-screen
+bg-gray-400 h-screen
 `
 const ButtonContainer = tw.div`
 bg-white 
@@ -58,7 +66,7 @@ const Line = tw.img`
 h-10
 `
 const InputContainer = tw.div`
-p-4 bg-white flex items-center px-4 mb-2
+p-4 bg-white flex items-center px-4 mb-2 rounded-b-3xl
 `
 const InputBoxes = tw.div`
 flex flex-col flex-1
@@ -80,7 +88,7 @@ const StarIcon = tw.img`
 bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `
 const ConfirmButton = tw.button`
-bg-black text-white h-18
+bg-black text-white h-18 rounded-full p-2 mt-1
 `
 const ConfirmContainer = tw.div`
 px-4 flex flex-col rounded-2 mt-2

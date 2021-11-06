@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 
 mapboxgl.accessToken = 
 "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g"
-const Map = () => {
-    
+const Map = (props) => {
+    // console.log(props)
   useEffect(()=>{
     // if(map.current) return;
     const maps = new mapboxgl.Map({
@@ -15,7 +15,30 @@ const Map = () => {
       center: [-99.29011, 39.39172],
       zoom: 3,
     })
-  }, []);
+    
+    if(props.pickup){
+
+      const marker = new mapboxgl.Marker()
+      .setLngLat(props.pickup)
+      .addTo(maps);
+      // console.log(props.pickup+"  " + props.dropOff)
+    }
+    if (props.dropOff) {
+      const marker = new mapboxgl.Marker()
+      .setLngLat(props.dropOff)
+      .addTo(maps);
+    }
+    if(props.pickup && props.dropOff){
+      maps.fitBounds([
+        props.pickup,
+        props.dropOff
+      ],{
+        padding:60
+      })
+    }
+  }, [props.pickup,props.dropOff]);
+
+  
     return (
         <Wrapper id="maps">
             
@@ -24,7 +47,7 @@ const Map = () => {
 }
 
 const Wrapper = tw.div`
-flex-1
+flex-1 h-1/2
 `
 
 export default Map
