@@ -36,8 +36,8 @@ const Search = () => {
                 <Link href={{
                     pathname:"/confirm",
                     query:{
-                        pickup: pick,
-                        dropoff: drop
+                        pickUp: pick,
+                        dropOff: drop
                     }
                 }} passHref={true}>
                     <ConfirmButton>Confirm Location</ConfirmButton>

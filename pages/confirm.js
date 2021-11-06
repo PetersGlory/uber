@@ -8,13 +8,13 @@ import RideSelector from './components/RideSelector'
 const Confirm = () => {
     
     const router = useRouter();
-    const { pickup, dropoff } = router.query;
+    const { pickUp, dropOff } = router.query;
     const [pick, setPick] = useState();
     const [drop, setDrop] = useState();
-    const getPickupCordinate = (pickup) =>{
+    const getPickupCordinate = (pickUp) =>{
         
         const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
-        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
+        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickUp}.json?` + 
         new URLSearchParams({
             access_token:token,
             limit:1
@@ -27,10 +27,10 @@ const Confirm = () => {
         })
     }
 
-    const getDropofCordinate = (dropoff) =>{
+    const getDropofCordinate = (dropOff) =>{
         
         const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
-        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
+        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropOff}.json?` + 
         new URLSearchParams({
             access_token:token,
             limit:1
@@ -44,8 +44,8 @@ const Confirm = () => {
     }
 
     useEffect(()=>{
-        getPickupCordinate(pickup);
-        getDropofCordinate(dropoff);
+        getPickupCordinate(pickUp);
+        getDropofCordinate(dropOff);
       
     },[])
 
