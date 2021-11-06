@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 import { carList } from '../data/carList'
 const RideSelector = () => {
-    // const [carLists, setCarLists] = useState([]);
-    // useEffect(()=>{
-    //     setCarLists();
-    // },[]);
-    // console.log(props);
+
     return (
         <Wrapper>
             <Title>Choose a Ride or swipe up for more....</Title>

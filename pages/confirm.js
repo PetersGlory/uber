@@ -4,16 +4,15 @@ import Link from "next/link"
 import {useRouter} from "next/router"
 import Map from './components/Map'
 import RideSelector from './components/RideSelector'
-// import carList from "./carList"
 
 const Confirm = () => {
-    // console.log(carList);
+    
     const router = useRouter();
     const { pickup, dropoff } = router.query;
     const [pick, setPick] = useState();
     const [drop, setDrop] = useState();
     const getPickupCordinate = (pickup) =>{
-        // const pickUp = ;
+        
         const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
         fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` + 
         new URLSearchParams({
@@ -24,12 +23,12 @@ const Confirm = () => {
         .then(res => res.json())
         .then(data =>{
             setPick(data.features[0].center);
-            console.log("Pick Up:" + pick);
+            
         })
     }
 
     const getDropofCordinate = (dropoff) =>{
-        // const dropOff = ;
+        
         const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
         fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` + 
         new URLSearchParams({
@@ -40,14 +39,14 @@ const Confirm = () => {
         .then(res => res.json())
         .then(data =>{
             setDrop(data.features[0].center);
-            console.log("Drop Off:" + drop);
+            
         })
     }
 
     useEffect(()=>{
         getPickupCordinate(pickup);
         getDropofCordinate(dropoff);
-        // console.log(carList);
+      
     },[])
 
     return (

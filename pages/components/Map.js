@@ -21,7 +21,7 @@ const Map = (props) => {
       const marker = new mapboxgl.Marker()
       .setLngLat(props.pickup)
       .addTo(maps);
-      // console.log(props.pickup+"  " + props.dropOff)
+    
     }
     if (props.dropOff) {
       const marker = new mapboxgl.Marker()
