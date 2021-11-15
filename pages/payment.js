@@ -65,13 +65,13 @@ const Payment = () => {
               
             />
             <SocialIcons>
-              <Link href="https://github.com/PetersGlory">
+              <Link href="https://github.com/PetersGlory" passHref={true}>
                 <Github src="https://icon-library.com/images/github-icon-for-resume/github-icon-for-resume-12.jpg" />
               </Link>
-              <Link href="https://web.facebook.com/Leadcodegiants/">
+              <Link href="https://web.facebook.com/Leadcodegiants/" passHref={true}>
                 <Facebook src="https://icon-library.com/images/facebook-icon-for-resume/facebook-icon-for-resume-8.jpg" />
               </Link>
-              <Link href="https://www.linkedin.com/in/codegiants/">
+              <Link href="https://www.linkedin.com/in/codegiants/" passHref={true}>
                 <LinkedIn src="https://icon-library.com/images/linkedin-icon-resume/linkedin-icon-resume-1.jpg" />
               </Link>
             </SocialIcons>
