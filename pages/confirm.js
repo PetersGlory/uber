@@ -9,11 +9,11 @@ const Confirm = () => {
     
     const router = useRouter();
     const { pickUp, dropOff } = router.query;
-    const [pick, setPick] = useState();
-    const [drop, setDrop] = useState();
+    const [pick, setPick] = useState([0,0]);
+    const [drop, setDrop] = useState([0,0]);
+    const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdnVyZ2N3dTU5NzUyd3E1NjY3cm1vdHEifQ.WeNZ7j-9R1SlQiqMl_O-DA";
     const getPickupCordinate = (pickUp) =>{
         
-        const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
         fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickUp}.json?` + 
         new URLSearchParams({
             access_token:token,
@@ -29,7 +29,7 @@ const Confirm = () => {
 
     const getDropofCordinate = (dropOff) =>{
         
-        const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
+        // const token = "pk.eyJ1IjoicGV0ZXIyMjAwIiwiYSI6ImNrdm00aHZ2cDByem8ydW81MXZrYjF5ZDgifQ.lroc5sTi5y8D8jKHB2zR1g";
         fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropOff}.json?` + 
         new URLSearchParams({
             access_token:token,
@@ -47,7 +47,7 @@ const Confirm = () => {
         getPickupCordinate(pickUp);
         getDropofCordinate(dropOff);
       
-    },[])
+    },[pickUp, dropOff])
 
     
     return (
@@ -63,10 +63,11 @@ const Confirm = () => {
                 dropOff={drop}
             />
             <RidesContainer>
-                <RideSelector />
-                <ConfirmButtonContainer>
-                    Confirm LocberX
-                </ConfirmButtonContainer>
+                <RideSelector 
+                    pickUp={pick}
+                    dropOff={drop}
+                />
+               
             </RidesContainer>
         </Wrapper>
     )
@@ -85,10 +86,5 @@ top-1 left-1 shadow-lg
 const BackButton = tw.img`
 h-8 cursor-pointer hover:scale-105 transition text-xl
 `
-const ConfirmButtonContainer = tw.button`
-border-t-2
-bg-black text-white flex flex-col 
-items-center m-2 p-2 rounded-full
-cursor-pointer hover:bg-gray-400 transition
-`
+
 export default Confirm

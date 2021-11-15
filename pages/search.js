@@ -43,12 +43,23 @@ const Search = () => {
                     <ConfirmButton>Confirm Location</ConfirmButton>
                 </Link>
             </ConfirmContainer>
+            <SocialIcons>
+              <Link href="https://github.com/PetersGlory">
+                <Github src="https://icon-library.com/images/github-icon-for-resume/github-icon-for-resume-12.jpg" />
+              </Link>
+              <Link href="https://web.facebook.com/Leadcodegiants/">
+                <Facebook src="https://icon-library.com/images/facebook-icon-for-resume/facebook-icon-for-resume-8.jpg" />
+              </Link>
+              <Link href="https://www.linkedin.com/in/codegiants/">
+                <LinkedIn src="https://icon-library.com/images/linkedin-icon-resume/linkedin-icon-resume-1.jpg" />
+              </Link>
+            </SocialIcons>
         </Wrapper>
     )
 }
 
 const Wrapper = tw.div`
-bg-gray-400 h-screen
+bg-gray-500 h-screen p-2
 `
 const ButtonContainer = tw.div`
 bg-white 
@@ -92,6 +103,18 @@ bg-black text-white h-18 rounded-full p-2 mt-1
 `
 const ConfirmContainer = tw.div`
 px-4 flex flex-col rounded-2 mt-2
+`
+const SocialIcons = tw.div`
+flex p-2 justify-center items-center
+`
+const Github = tw.img`
+h-14 ml-2 cursor-pointer hover:scale-105 transition text-xl
+`
+const LinkedIn = tw.img`
+h-12 cursor-pointer mr-2 hover:scale-105 transition text-xl
+`
+const Facebook = tw.img`
+h-12 cursor-pointer mr-2 hover:scale-105 transition text-xl bg-none
 `
 export default Search;
 
