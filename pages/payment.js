@@ -9,17 +9,19 @@ import  Link from 'next/link';
 const Payment = () => {
   const [user, setUser] = useState();
   const router = useRouter();
+  const [price, setPrice] = useState(0);
 
   
-  const amounts = JSON.parse(localStorage.getItem("price"));
   useEffect(()=>{
     return onAuthStateChanged(auth, user =>{
-        if (user) {
-          setUser({
-            name: user.displayName,
-            img: user.photoURL,
-            email: user.email
-          });
+      if (user) {
+        setUser({
+          name: user.displayName,
+          img: user.photoURL,
+          email: user.email
+        });
+        const amounts = JSON.parse(localStorage.getItem("price"));
+        setPrice(amounts);
         }else{
           setUser(null)
             router.push('/login');
@@ -31,7 +33,7 @@ const Payment = () => {
     const config = {
         public_key: 'FLWPUBK-cb8219002f9bafd217e8e6525a9ec88c-X',
         tx_ref: Date.now(),
-        amount: amounts,
+        amount: price,
         currency: 'USD',
         payment_options: 'card,mobilemoney,ussd',
         customer: {
