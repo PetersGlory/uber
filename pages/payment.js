@@ -9,8 +9,6 @@ import  Link from 'next/link';
 const Payment = () => {
   const [user, setUser] = useState();
   const router = useRouter();
-  // const { amount } = router.query;
-  // const amountV = amount;
 
   
   const amounts = JSON.parse(localStorage.getItem("price"));
@@ -20,10 +18,8 @@ const Payment = () => {
           setUser({
             name: user.displayName,
             img: user.photoURL,
-            email: user.email,
-            // amounts: amount,
+            email: user.email
           });
-          // console.log(user.amounts);
         }else{
           setUser(null)
             router.push('/login');
@@ -68,7 +64,7 @@ const Payment = () => {
                     <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
                 </Link>
             </ButtonContainer>
-            <Title>Let's Get Your Ride Ready. </Title>
+            <Title>Let&apos;s Get Your Ride Ready. </Title>
             <HeadImg src="https://lh3.googleusercontent.com/proxy/1OmOnqdGNr_fFxR5DIEbfj4naAU42C-jCYNhFmJASZEUYq5r8kzSxoIr3yZ2ToYVkS5V_tgHwLcbDd9JlUZYM_dhMVPXvks" />
             <FlutterWaveButton {...fwConfig}
               className="p-2 bg-yellow-300 mt-5 rounded-full shadow-lg text-white font-medium "
