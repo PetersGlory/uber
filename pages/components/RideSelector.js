@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import tw from 'tailwind-styled-components/dist/tailwind'
 import { carList } from '../../data/carList'
 import Link from "next/link"
+import router from 'next/router'
 
 const RideSelector = ({pickUp, dropOff}) => {
     const [rideDuration, setRideDuration] = useState(0);
@@ -31,8 +32,14 @@ const RideSelector = ({pickUp, dropOff}) => {
             document.getElementById("cBtn").style.backgroundColor="black";
             document.getElementById("cBtn").style.boxShadow="5px 5px 5px #888888";
         },500);
+        console.log(price);
     }
     
+    const handleChange =()=>{
+        if(localStorage.price = JSON.stringify(price)){
+            router.push('/payment');
+        }
+    }
 
     return (
         <Wrapper>
@@ -45,20 +52,20 @@ const RideSelector = ({pickUp, dropOff}) => {
                             <Service>{car.service}</Service>
                             <Time>5 min away</Time>
                         </CarDetails>
-                        <CarPrice onClick={handleAmount} id={car.id}>{'$' + (rideDuration * car.multiplier).toFixed(2)}</CarPrice>
+                        <CarPrice onClick={handleAmount}>$ <p id={car.id}>{(rideDuration * car.multiplier).toFixed(2)}</p></CarPrice>
                     </Car>
                 ))}
             </CarList>
-            <Link href={{
+            {/* <Link href={{
                     pathname:"/payment",
                     query:{
-                        amount:price
+                        amount:price,
                     }
-                }} passHref={true}>
-            <ConfirmButtonContainer id="cBtn">
-                    Confirm LocberX
-            </ConfirmButtonContainer>
-            </Link>
+                }} passHref={true}> */}
+                <ConfirmButtonContainer id="cBtn" onClick={handleChange}>
+                        Confirm LocberX
+                </ConfirmButtonContainer>
+            {/* </Link> */}
         </Wrapper>
     )
 }
@@ -82,7 +89,7 @@ const CarDetails = tw.div`
 flex-1
 `
 const CarPrice = tw.button`
-text-sm border shadow-lg p-2 btn rounded
+text-sm border shadow-lg p-2 btn rounded flex
 `
 const Service = tw.div`
 font-medium

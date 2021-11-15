@@ -9,9 +9,11 @@ import  Link from 'next/link';
 const Payment = () => {
   const [user, setUser] = useState();
   const router = useRouter();
-  const { amount } = router.query;
+  // const { amount } = router.query;
+  // const amountV = amount;
 
   
+  const amounts = JSON.parse(localStorage.getItem("price"));
   useEffect(()=>{
     return onAuthStateChanged(auth, user =>{
         if (user) {
@@ -19,8 +21,9 @@ const Payment = () => {
             name: user.displayName,
             img: user.photoURL,
             email: user.email,
-            // number: user.uid,
+            // amounts: amount,
           });
+          // console.log(user.amounts);
         }else{
           setUser(null)
             router.push('/login');
@@ -32,7 +35,7 @@ const Payment = () => {
     const config = {
         public_key: 'FLWPUBK-cb8219002f9bafd217e8e6525a9ec88c-X',
         tx_ref: Date.now(),
-        amount: amount,
+        amount: amounts,
         currency: 'USD',
         payment_options: 'card,mobilemoney,ussd',
         customer: {
@@ -43,7 +46,7 @@ const Payment = () => {
         customizations: {
           title: 'Locber Ride.',
           description: 'Payment For Ride',
-          logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+          logo: user && user.img,
         },
       };
     
@@ -54,11 +57,18 @@ const Payment = () => {
            console.log(response);
           closePaymentModal() // this will close the modal programmatically
         },
-        onClose: () => {},
+        onClose: () => {
+          router.push('/payment');
+        },
       };
     return (
         <Wrapper>
-            <Title>Login to access you account. </Title>
+          <ButtonContainer>
+                <Link href="/search" passHref={true}>
+                    <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+                </Link>
+            </ButtonContainer>
+            <Title>Let's Get Your Ride Ready. </Title>
             <HeadImg src="https://lh3.googleusercontent.com/proxy/1OmOnqdGNr_fFxR5DIEbfj4naAU42C-jCYNhFmJASZEUYq5r8kzSxoIr3yZ2ToYVkS5V_tgHwLcbDd9JlUZYM_dhMVPXvks" />
             <FlutterWaveButton {...fwConfig}
               className="p-2 bg-yellow-300 mt-5 rounded-full shadow-lg text-white font-medium "
@@ -80,13 +90,13 @@ const Payment = () => {
 }
 
 const Wrapper = tw.div`
-p-8 flex flex-col w-screen h-screen bg-gray-400 
+p-2 flex flex-col w-screen h-screen bg-gray-400 
 `
 const HeadImg = tw.img`
 mt-4 p-2 rounded
 `
 const Title = tw.div`
-text-2xl pt-4 text-black-500 font-medium mt-4
+text-2xl pt-4 text-white font-medium mt-4
 `
 const SocialIcons = tw.div`
 flex p-2 justify-center items-center
@@ -99,5 +109,12 @@ h-12 cursor-pointer mr-2 hover:scale-105 transition text-xl
 `
 const Facebook = tw.img`
 h-12 cursor-pointer mr-2 hover:scale-105 transition text-xl bg-none
+`
+const ButtonContainer = tw.div`
+fixed bg-white rounded-full top z-10 
+top-1 left-1 shadow-lg
+`
+const BackButton = tw.img`
+h-8 cursor-pointer hover:scale-105 transition text-xl
 `
 export default Payment
