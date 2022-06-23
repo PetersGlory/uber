@@ -11,7 +11,7 @@ const Map = (props) => {
     // if(map.current) return;
     const maps = new mapboxgl.Map({
       container:'maps',
-      style: 'mapbox://styles/drakosi/ckvcwq3rwdw4314o3i2ho8tph',
+      style: 'mapbox://styles/peter2200/cl4qteojx000n14p7j68lracw',
       center: [-99.29011, 39.39172],
       zoom: 3,
     })
